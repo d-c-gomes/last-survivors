@@ -1,0 +1,23 @@
+{
+    "menu": {
+        "play": "JOGAR",
+        "options": "OPCOES"
+    },
+    "options": {
+        "title": "OPCOES",
+        "language": "IDIOMA",
+        "portuguese": "PORTUGUES",
+        "english": "INGLES",
+        "save": "SALVAR",
+        "back": "VOLTAR"
+    },
+    "game": {
+        "hp": "VIDA {current}/{max}",
+        "xp": "NIVEL {level}  XP {current}/{needed}"
+    },
+    "gameOver": {
+        "title": "VOCE MORREU",
+        "retry": "TENTAR DE NOVO",
+        "menu": "VOLTAR AO MENU"
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "menu": {
+        "play": "PLAY",
+        "options": "OPTIONS"
+    },
+    "options": {
+        "title": "OPTIONS",
+        "language": "LANGUAGE",
+        "portuguese": "PORTUGUESE",
+        "english": "ENGLISH",
+        "save": "SAVE",
+        "back": "BACK"
+    },
+    "game": {
+        "hp": "HP {current}/{max}",
+        "xp": "LEVEL {level}  XP {current}/{needed}"
+    },
+    "gameOver": {
+        "title": "YOU DIED",
+        "retry": "TRY AGAIN",
+        "menu": "BACK TO MENU"
+    }
+}
