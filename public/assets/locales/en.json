@@ -13,7 +13,11 @@
     },
     "game": {
         "hp": "HP {current}/{max}",
-        "xp": "LEVEL {level}  XP {current}/{needed}"
+        "xp": "LEVEL {level}  XP {current}/{needed}",
+        "wave": "WAVE {current}/{total}   {time}s",
+        "boss": "BOSS",
+        "waveIncoming": "WAVE {number} INCOMING...",
+        "bossIncoming": "THE BOSS APPROACHES..."
     },
     "gameOver": {
         "title": "YOU DIED",

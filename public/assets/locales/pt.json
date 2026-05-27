@@ -13,7 +13,11 @@
     },
     "game": {
         "hp": "VIDA {current}/{max}",
-        "xp": "NIVEL {level}  XP {current}/{needed}"
+        "xp": "NIVEL {level}  XP {current}/{needed}",
+        "wave": "ONDA {current}/{total}   {time}s",
+        "boss": "BOSS",
+        "waveIncoming": "ONDA {number} EM BREVE...",
+        "bossIncoming": "O BOSS APROXIMA-SE..."
     },
     "gameOver": {
         "title": "VOCE MORREU",
