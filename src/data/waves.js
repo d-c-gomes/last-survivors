@@ -1,7 +1,7 @@
 export const ONDAS = [
     {
         numero: 1,
-        duracao: 1,
+        duracao: 60,
         spawnDelay: 2000,
         vidaInimigo: 1,
         velocidadeInimigo: 80
