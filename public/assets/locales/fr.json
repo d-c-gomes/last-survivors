@@ -1,0 +1,33 @@
+{
+    "menu": {
+        "play": "JOUER",
+        "options": "OPTIONS"
+    },
+    "options": {
+        "title": "OPTIONS",
+        "language": "LANGUE",
+        "portuguese": "PORTUGAIS",
+        "english": "ANGLAIS",
+        "french": "FRANCAIS",
+        "save": "SAUVEGARDER",
+        "back": "RETOUR"
+    },
+    "game": {
+        "hp": "VIE {current}/{max}",
+        "xp": "NIVEAU {level}  XP {current}/{needed}",
+        "wave": "VAGUE {current}/{total}  {time}s",
+        "waveIncoming": "VAGUE {number}",
+        "bossIncoming": "BOSS FINAL",
+        "boss": "BOSS"
+    },
+    "gameOver": {
+        "title": "VOUS ETES MORT",
+        "retry": "REESSAYER",
+        "menu": "RETOUR AU MENU"
+    },
+    "victory": {
+        "title": "VICTOIRE",
+        "retry": "REJOUER",
+        "menu": "RETOUR AU MENU"
+    }
+}

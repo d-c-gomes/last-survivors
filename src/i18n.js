@@ -1,6 +1,6 @@
 const STORAGE_KEY = 'lastSurvivorsLanguage';
 const DEFAULT_LANGUAGE = 'pt';
-const SUPPORTED_LANGUAGES = ['pt', 'en'];
+const SUPPORTED_LANGUAGES = ['pt', 'en', 'fr'];
 
 export function initLanguage(scene) {
     const savedLanguage = readSavedLanguage();
@@ -47,6 +47,6 @@ function saveLanguage(language) {
     try {
         window.localStorage.setItem(STORAGE_KEY, language);
     } catch {
-        // If storage is blocked, the current session language still works through the registry.
+
     }
 }

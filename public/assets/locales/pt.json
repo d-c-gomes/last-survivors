@@ -8,20 +8,26 @@
         "language": "IDIOMA",
         "portuguese": "PORTUGUES",
         "english": "INGLES",
+        "french": "FRANCES",
         "save": "SALVAR",
         "back": "VOLTAR"
     },
     "game": {
         "hp": "VIDA {current}/{max}",
         "xp": "NIVEL {level}  XP {current}/{needed}",
-        "wave": "ONDA {current}/{total}   {time}s",
-        "boss": "BOSS",
-        "waveIncoming": "ONDA {number} EM BREVE...",
-        "bossIncoming": "O BOSS APROXIMA-SE..."
+        "wave": "ONDA {current}/{total}  {time}s",
+        "waveIncoming": "ONDA {number}",
+        "bossIncoming": "CHEFE FINAL",
+        "boss": "CHEFE"
     },
     "gameOver": {
         "title": "VOCE MORREU",
         "retry": "TENTAR DE NOVO",
         "menu": "VOLTAR AO MENU"
-    }
+    },
+    "victory": {
+    "title": "VITORIA",
+    "retry": "JOGAR DE NOVO",
+    "menu": "VOLTAR AO MENU"
+}
 }

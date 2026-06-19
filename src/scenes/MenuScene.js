@@ -14,6 +14,14 @@ export class MenuScene extends Phaser.Scene {
         this.scale.on('resize', () => {
             this.scene.restart();
         });
+
+        this.input.once('pointerdown', () => {
+            this.iniciarMusicaMenu();
+        });
+
+        this.events.once('shutdown', () => {
+            this.pararMusicaMenu();
+        });
     }
 
     criarFundo() {
@@ -51,7 +59,7 @@ export class MenuScene extends Phaser.Scene {
         const largura = this.scale.width;
         const altura = this.scale.height;
 
-        const painel = this.add.rectangle(largura / 2, altura * 0.62, 560, 330, 0x120707, 0.88);
+        const painel = this.add.rectangle(largura / 2, altura * 0.62, 720, 360, 0x120707, 0.88);
         painel.setStrokeStyle(3, 0x8f1c1c);
 
         const titulo = this.add.text(largura / 2, altura * 0.45, t(this, 'options.title'), {
@@ -70,8 +78,9 @@ export class MenuScene extends Phaser.Scene {
 
         const botaoPortugues = this.criarBotaoIdioma(largura / 2 - 130, altura * 0.62, t(this, 'options.portuguese'), 'pt');
         const botaoIngles = this.criarBotaoIdioma(largura / 2 + 130, altura * 0.62, t(this, 'options.english'), 'en');
+        const botaoFrances = this.criarBotaoIdioma(largura / 2, altura * 0.70, t(this, 'options.french'), 'fr');
 
-        const botaoSalvar = this.criarBotao(largura / 2, altura * 0.74, t(this, 'options.save'), '28px');
+        const botaoSalvar = this.criarBotao(largura / 2, altura * 0.76, t(this, 'options.save'), '28px');
         botaoSalvar.on('pointerdown', () => {
             setLanguage(this, this.idiomaSelecionado);
             this.mostrarMenuPrincipal();
@@ -88,6 +97,8 @@ export class MenuScene extends Phaser.Scene {
             botaoPortugues.texto,
             botaoIngles.fundo,
             botaoIngles.texto,
+            botaoFrances.fundo,
+            botaoFrances.texto,
             botaoSalvar,
             botaoVoltar
         ];
@@ -118,7 +129,7 @@ export class MenuScene extends Phaser.Scene {
     }
 
     criarBotaoIdioma(x, y, texto, idioma) {
-        const fundo = this.add.rectangle(x, y, 220, 58, 0x260f0f, 0.95)
+        const fundo = this.add.rectangle(x, y, 210, 58, 0x260f0f, 0.95)
             .setStrokeStyle(3, 0x6b1a1a)
             .setInteractive({ useHandCursor: true });
         const textoBotao = this.add.text(x, y, texto, {
@@ -159,4 +170,82 @@ export class MenuScene extends Phaser.Scene {
         this.elementosMenu.forEach((elemento) => elemento.destroy());
         this.elementosMenu = [];
     }
+
+    
+iniciarMusicaMenu() {
+    if (this.audioContext) return;
+
+    try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        this.audioContext = new AudioContext();
+
+        this.masterGain = this.audioContext.createGain();
+        this.masterGain.gain.value = 0.50;
+        this.masterGain.connect(this.audioContext.destination);
+
+        this.osciladoresMenu = [];
+
+        this.criarNotaMenu(220, 'sine', 0.25);
+        this.criarNotaMenu(330, 'triangle', 0.18);
+        this.criarNotaMenu(440, 'sine', 0.12);
+
+        this.criarPulsoMenu();
+    } catch {
+        this.audioContext = null;
+    }
+}
+
+criarNotaMenu(frequencia, tipo, volume) {
+    if (!this.audioContext || !this.masterGain) return;
+
+    const oscilador = this.audioContext.createOscillator();
+    const ganho = this.audioContext.createGain();
+
+    oscilador.type = tipo;
+    oscilador.frequency.value = frequencia;
+    ganho.gain.value = volume;
+
+    oscilador.connect(ganho);
+    ganho.connect(this.masterGain);
+
+    oscilador.start();
+
+    this.osciladoresMenu.push(oscilador);
+}
+
+criarPulsoMenu() {
+    this.timerMusicaMenu = this.time.addEvent({
+        delay: 900,
+        loop: true,
+        callback: () => {
+            if (!this.audioContext || !this.masterGain) return;
+
+            const agora = this.audioContext.currentTime;
+
+            this.masterGain.gain.cancelScheduledValues(agora);
+            this.masterGain.gain.setValueAtTime(0.08, agora);
+            this.masterGain.gain.linearRampToValueAtTime(0.22, agora + 0.08);
+            this.masterGain.gain.linearRampToValueAtTime(0.10, agora + 0.45);
+        }
+    });
+}
+
+pararMusicaMenu() {
+    if (this.timerMusicaMenu) {
+        this.timerMusicaMenu.remove();
+        this.timerMusicaMenu = null;
+    }
+
+    if (!this.audioContext) return;
+
+    this.osciladoresMenu.forEach((oscilador) => {
+        oscilador.stop();
+    });
+
+    this.osciladoresMenu = [];
+
+    this.audioContext.close();
+    this.audioContext = null;
+}
+    
 }

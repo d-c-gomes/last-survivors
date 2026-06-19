@@ -3,6 +3,7 @@ import { PreloadScene } from './scenes/PreloadScene.js';
 import { MenuScene } from './scenes/MenuScene.js';
 import { GameScene } from './scenes/GameScene.js';
 import { GameOverScene } from './scenes/GameOverScene.js';
+import { VictoryScene } from './scenes/VictoryScene.js';
 
 const config = {
     type: Phaser.AUTO,
@@ -12,17 +13,23 @@ const config = {
         width: '100%',
         height: '100%'
     },
-    // ISTO É MAGIA: Desliga o desfoque e deixa a pixel art nítida!
-    pixelArt: true, 
+    pixelArt: true,
 
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 0 }, 
+            gravity: { y: 0 },
             debug: false
         }
     },
-    scene: [PreloadScene, MenuScene, GameScene, GameOverScene]
+
+    scene: [
+        PreloadScene,
+        MenuScene,
+        GameScene,
+        GameOverScene,
+        VictoryScene
+    ]
 };
 
 const game = new Phaser.Game(config);
